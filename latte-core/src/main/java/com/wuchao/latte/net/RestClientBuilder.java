@@ -104,6 +104,6 @@ public class RestClientBuilder {
                 mIRequest, mISuccess,
                 mIFailure, mIError,
                 mBody, mContext,
-                mLoaderStyle);
+                mFile, mLoaderStyle);
     }
 }
