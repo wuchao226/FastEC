@@ -36,19 +36,19 @@ public class ExampleDelegate extends LatteDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        //Toast.makeText(Latte.getApplication(), response, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Latte.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-                        Toast.makeText(Latte.getApplication(), "error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Latte.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-                        Toast.makeText(Latte.getApplication(), "failure", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Latte.getApplicationContext(), "failure", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build()

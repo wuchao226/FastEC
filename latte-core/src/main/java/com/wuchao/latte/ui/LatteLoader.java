@@ -8,7 +8,7 @@ import android.view.WindowManager;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wuchao.latte.R;
-import com.wuchao.latte.util.DimenUtil;
+import com.wuchao.latte.util.dimen.DimenUtil;
 
 import java.util.ArrayList;
 
