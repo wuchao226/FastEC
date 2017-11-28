@@ -1,11 +1,11 @@
-package com.wuchao.latte.net;
+package com.wuchao.latte.net.rx;
 
 import java.util.Map;
 
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
@@ -25,36 +25,36 @@ import retrofit2.http.Url;
  * @desciption:
  */
 
-public interface RestService {
+public interface RxRestService {
 
     @GET
-    Call<String> get(@Url String url, @QueryMap Map<String, Object> params);
+    Observable<String> get(@Url String url, @QueryMap Map<String, Object> params);
 
     @FormUrlEncoded
     @POST
-    Call<String> post(@Url String url, @FieldMap Map<String, Object> params);
+    Observable<String> post(@Url String url, @FieldMap Map<String, Object> params);
 
     //传入原始数据
     @POST
-    Call<String> postRaw(@Url String url, @Body RequestBody body);
+    Observable<String> postRaw(@Url String url, @Body RequestBody body);
 
     @FormUrlEncoded
     @PUT
-    Call<String> put(@Url String url, @FieldMap Map<String, Object> params);
+    Observable<String> put(@Url String url, @FieldMap Map<String, Object> params);
 
     //传入原始数据
     @PUT
-    Call<String> putRaw(@Url String url, @Body RequestBody body);
+    Observable<String> putRaw(@Url String url, @Body RequestBody body);
 
     @DELETE
-    Call<String> delete(@Url String url, @QueryMap Map<String, Object> params);
+    Observable<String> delete(@Url String url, @QueryMap Map<String, Object> params);
 
     @Streaming
     @GET
-    Call<ResponseBody> download(@Url String url, @QueryMap Map<String, Object> params);
+    Observable<ResponseBody> download(@Url String url, @QueryMap Map<String, Object> params);
 
     @Multipart
     @POST
-    Call<String> upload(@Url String url, @Part MultipartBody.Part file);
+    Observable<String> upload(@Url String url, @Part MultipartBody.Part file);
 
 }

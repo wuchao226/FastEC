@@ -1,7 +1,5 @@
 package com.wuchao.latte.net.download;
 
-import android.os.AsyncTask;
-
 import com.wuchao.latte.net.RestCreator;
 import com.wuchao.latte.net.callback.IError;
 import com.wuchao.latte.net.callback.IFailure;
@@ -9,11 +7,6 @@ import com.wuchao.latte.net.callback.IRequest;
 import com.wuchao.latte.net.callback.ISuccess;
 
 import java.util.WeakHashMap;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * @author: wuchao
@@ -51,11 +44,11 @@ public class DownloadHandler {
         this.ERROR = error;
     }
 
-    public final void handleDoenload() {
+    public final void handleDownload() {
         if (REQUEST != null) {
             REQUEST.onRequestStart();
         }
-        RestCreator.getRestService()
+        /*RestCreator.getRxRestService()
                 .download(URL, PARAMS)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -86,6 +79,6 @@ public class DownloadHandler {
                             RestCreator.getParams().clear();
                         }
                     }
-                });
+                });*/
     }
 }

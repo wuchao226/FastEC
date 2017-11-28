@@ -2,8 +2,8 @@ package com.wuchao.latte.net.callback;
 
 import android.os.Handler;
 
-import com.wuchao.latte.ui.LatteLoader;
-import com.wuchao.latte.ui.LoaderStyle;
+import com.wuchao.latte.ui.loader.LatteLoader;
+import com.wuchao.latte.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

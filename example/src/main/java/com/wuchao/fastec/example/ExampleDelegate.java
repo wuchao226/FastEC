@@ -7,10 +7,12 @@ import android.widget.Toast;
 
 import com.wuchao.latte.app.Latte;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.net.RestClient;
-import com.wuchao.latte.net.callback.IError;
-import com.wuchao.latte.net.callback.IFailure;
-import com.wuchao.latte.net.callback.ISuccess;
+import com.wuchao.latte.net.rx.RxRestClient;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author: wuchao
@@ -30,28 +32,32 @@ public class ExampleDelegate extends LatteDelegate {
     }
 
     private void testRestClient() {
-        RestClient.builder()
-                .url("http://news.baidu.com/")
-                .loader(getActivity())
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        //Toast.makeText(Latte.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        Toast.makeText(Latte.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Toast.makeText(Latte.getApplicationContext(), "failure", Toast.LENGTH_SHORT).show();
-                    }
-                })
+        RxRestClient.builder()
+                .url("http://192.168.1.102/index")
                 .build()
-                .get();
+                .get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(Latte.getApplicationContext(),s,Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

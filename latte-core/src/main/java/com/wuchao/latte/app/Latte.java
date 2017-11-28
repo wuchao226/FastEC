@@ -2,8 +2,6 @@ package com.wuchao.latte.app;
 
 import android.content.Context;
 
-import java.util.HashMap;
-
 /**
  * @author: wuchao
  * @date: 2017/10/16 22:36
@@ -18,15 +16,20 @@ public final class Latte {
      * @param context
      */
     public static Configurator init(Context context) {
-        getConfigurations().put(ConfigType.APPLICATION_CONTEXT.name(), context.getApplicationContext());
+        getConfigurator().getLatteConfigs()
+                .put(ConfigKeys.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
 
-    public static HashMap<String, Object> getConfigurations() {
-        return Configurator.getInstance().getLatteConfigs();
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
     }
 
-    public static Context getApplicationContext(){
-        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
+    public static <T> T getConfigurations(Object key) {
+        return getConfigurator().getConfiguration(key);
+    }
+
+    public static Context getApplicationContext() {
+        return getConfigurations(ConfigKeys.APPLICATION_CONTEXT);
     }
 }

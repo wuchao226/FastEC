@@ -1,4 +1,4 @@
-package com.wuchao.latte.ui;
+package com.wuchao.latte.ui.loader;
 
 /**
  * @author: wuchao
