@@ -7,7 +7,9 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.wuchao.latte.app.Latte;
 import com.wuchao.latte.ec.database.DatabaseManager;
 import com.wuchao.latte.ec.icon.FontEcModule;
-import com.wuchao.latte.net.interceptors.DebugInterceptor;
+import com.wuchao.latte.util.log.LatteLogger;
+
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * @author: wuchao
@@ -24,12 +26,22 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://192.168.1.102/")
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withApiHost("http://114.67.235.114/RestServer/api/")
+                //.withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withInterceptor(mLoggingInterceptor)
+                .withJavaScriptInterface("latte")
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);
     }
+
+    HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+        @Override
+        public void log(String message) {
+            LatteLogger.i("RetrofitLog", message);
+        }
+    }).setLevel(HttpLoggingInterceptor.Level.BODY);
+
 
     private void initStetho() {
         Stetho.initialize(

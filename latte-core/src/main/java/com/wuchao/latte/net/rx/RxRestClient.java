@@ -3,7 +3,7 @@ package com.wuchao.latte.net.rx;
 import android.content.Context;
 
 import com.wuchao.latte.net.HttpMethod;
-import com.wuchao.latte.net.RestCreator;
+import com.wuchao.latte.net.RxRestCreator;
 import com.wuchao.latte.ui.loader.LatteLoader;
 import com.wuchao.latte.ui.loader.LoaderStyle;
 
@@ -24,7 +24,7 @@ import okhttp3.ResponseBody;
 
 public class RxRestClient {
 
-    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
+    private static final WeakHashMap<String, Object> PARAMS = RxRestCreator.getParams();
     private final String URL;
     private final RequestBody BODY;
     private final LoaderStyle LOADER_STYLE;
@@ -50,7 +50,7 @@ public class RxRestClient {
     }
 
     private Observable<String> request(HttpMethod method) {
-        final RxRestService service = RestCreator.getRxRestService();
+        final RxRestService service = RxRestCreator.getRxRestService();
         Observable<String> observable = null;
         if (LOADER_STYLE != null) {
             LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
@@ -82,7 +82,7 @@ public class RxRestClient {
                 //以form的形式提交文件
                 final MultipartBody.Part body =
                         MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
-                observable = RestCreator.getRxRestService().upload(URL, body);
+                observable = RxRestCreator.getRxRestService().upload(URL, body);
                 break;
             default:
                 break;
@@ -130,7 +130,7 @@ public class RxRestClient {
     public final Observable<ResponseBody> download() {
 //        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME, SUCCESS, FAILURE, ERROR)
 //                .handleDoenload();
-        final Observable<ResponseBody> responseBodyObservable = RestCreator.getRxRestService().download(URL, PARAMS);
+        final Observable<ResponseBody> responseBodyObservable = RxRestCreator.getRxRestService().download(URL, PARAMS);
         return responseBodyObservable;
     }
 }

@@ -2,7 +2,7 @@ package com.wuchao.latte.net.rx;
 
 import android.content.Context;
 
-import com.wuchao.latte.net.RestCreator;
+import com.wuchao.latte.net.RxRestCreator;
 import com.wuchao.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
@@ -19,7 +19,7 @@ import okhttp3.RequestBody;
 
 public class RxRestClientBuilder {
 
-    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
+    private static final WeakHashMap<String, Object> PARAMS = RxRestCreator.getParams();
     private String mUrl = null;
     private File mFile = null;
     private RequestBody mBody = null;

@@ -1,6 +1,6 @@
 package com.wuchao.latte.net.download;
 
-import com.wuchao.latte.net.RestCreator;
+import com.wuchao.latte.net.RxRestCreator;
 import com.wuchao.latte.net.callback.IError;
 import com.wuchao.latte.net.callback.IFailure;
 import com.wuchao.latte.net.callback.IRequest;
@@ -17,7 +17,7 @@ import java.util.WeakHashMap;
 public class DownloadHandler {
 
     private final String URL;
-    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
+    private static final WeakHashMap<String, Object> PARAMS = RxRestCreator.getParams();
     private final IRequest REQUEST;
     private final String DOWNLOAD_DIR;
     private final String EXTENSION;
@@ -48,7 +48,7 @@ public class DownloadHandler {
         if (REQUEST != null) {
             REQUEST.onRequestStart();
         }
-        /*RestCreator.getRxRestService()
+        /*RxRestCreator.getRxRestService()
                 .download(URL, PARAMS)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -69,14 +69,14 @@ public class DownloadHandler {
                                 ERROR.onError(response.code(), response.message());
                             }
                         }
-                        RestCreator.getParams().clear();
+                        RxRestCreator.getParams().clear();
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         if (FAILURE != null) {
                             FAILURE.onFailure();
-                            RestCreator.getParams().clear();
+                            RxRestCreator.getParams().clear();
                         }
                     }
                 });*/

@@ -108,9 +108,9 @@ public class SignUpDelegate extends LatteDelegate {
 
     @OnClick({R2.id.btn_sign_up})
     public void onClickSignUp() {
-        if (checkForm()) {
+        //if (checkForm()) {
             RxRestClient.builder()
-                    .url("http://114.67.235.114/RestServer/api/user_profile.php")
+                    .url("user_profile.php")
                     .params("name", mName.getText().toString())
                     .params("email", mEmail.getText().toString())
                     .params("phone", mPhone.getText().toString())
@@ -142,7 +142,7 @@ public class SignUpDelegate extends LatteDelegate {
                         }
                     });
             //Toast.makeText(Latte.getApplicationContext(), "验证通过", Toast.LENGTH_LONG).show();
-        }
+        //}
     }
 
     @OnClick({R2.id.tv_link_sign_in})

@@ -12,4 +12,7 @@ public enum ConfigKeys {
     CONFIG_READY,           //控制我的初始化或配置是否完成
     ICON,       //存储自己初始化的项目
     INTERCEPTOR,
+    JAVASCRIPT_INTERFACE,
+    ACTIVITY,
+    HANDLER,
 }

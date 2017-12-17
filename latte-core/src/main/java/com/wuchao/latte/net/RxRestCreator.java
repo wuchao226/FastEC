@@ -20,7 +20,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * @desciption:
  */
 
-public class RestCreator {
+public class RxRestCreator {
 
     /**
      * 参数容器

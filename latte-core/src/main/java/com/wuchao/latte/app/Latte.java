@@ -1,6 +1,7 @@
 package com.wuchao.latte.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 /**
  * @author: wuchao
@@ -31,5 +32,9 @@ public final class Latte {
 
     public static Context getApplicationContext() {
         return getConfigurations(ConfigKeys.APPLICATION_CONTEXT);
+    }
+
+    public static Handler getHandler(){
+        return getConfigurations(ConfigKeys.HANDLER);
     }
 }
