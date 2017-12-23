@@ -2,6 +2,7 @@ package com.wuchao.latte.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -71,14 +72,16 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
-                        final JSONObject object = JSON.parseObject(response);
-                        BEAN.setTotal(object.getInteger("total"))
-                                .setPageSize(object.getInteger("page_size"));
-                        //设置adapter
-                        mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
-                        mAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
-                        RECYCLERVIEW.setAdapter(mAdapter);
-                        BEAN.addIndex();
+                        if (!TextUtils.isEmpty(response)) {
+                            final JSONObject object = JSON.parseObject(response);
+                            BEAN.setTotal(object.getInteger("total"))
+                                    .setPageSize(object.getInteger("page_size"));
+                            //设置adapter
+                            mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                            mAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
+                            RECYCLERVIEW.setAdapter(mAdapter);
+                            BEAN.addIndex();
+                        }
                     }
                 });
     }
@@ -103,7 +106,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                             .subscribe(new Consumer<String>() {
                                 @Override
                                 public void accept(String s) throws Exception {
-                                    CONVERTER.clearData();
                                     mAdapter.addData(CONVERTER.setJsonData(s).convert());
                                     //累加数量
                                     BEAN.setCurrentCount(mAdapter.getData().size());

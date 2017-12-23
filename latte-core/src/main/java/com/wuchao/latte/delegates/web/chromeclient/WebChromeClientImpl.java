@@ -1,6 +1,8 @@
 package com.wuchao.latte.delegates.web.chromeclient;
 
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
 /**
  * @author: wuchao
@@ -9,4 +11,9 @@ import android.webkit.WebChromeClient;
  */
 
 public class WebChromeClientImpl extends WebChromeClient {
+
+    @Override
+    public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+        return super.onJsAlert(view, url, message, result);
+    }
 }

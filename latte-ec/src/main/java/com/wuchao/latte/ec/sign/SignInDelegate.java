@@ -57,7 +57,7 @@ public class SignInDelegate extends LatteDelegate {
     public void onClickSignIn() {
         if (checkForm()) {
             RxRestClient.builder()
-                    .url("http://114.67.235.114/RestServer/api/user_profile.php")
+                    .url("user_profile.php")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .build()

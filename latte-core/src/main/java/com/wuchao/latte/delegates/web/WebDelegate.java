@@ -26,6 +26,8 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
     private WebView mWebView = null;
     private boolean mIsWebViewAvailable;
 
+    private LatteDelegate mTopDelegate = null;
+
     public WebDelegate() {
     }
 
@@ -60,6 +62,17 @@ public abstract class WebDelegate extends LatteDelegate implements IWebViewIniti
                 throw new NullPointerException("Web Initializer is null");
             }
         }
+    }
+
+    public void setTopDelegate(LatteDelegate delegate) {
+        mTopDelegate = delegate;
+    }
+
+    public LatteDelegate getTopDelegate() {
+        if (mTopDelegate == null) {
+            mTopDelegate = this;
+        }
+        return mTopDelegate;
     }
 
     public WebView getWebView() {

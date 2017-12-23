@@ -7,6 +7,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.wuchao.latte.delegates.IPageLoadListener;
 import com.wuchao.latte.delegates.web.chromeclient.WebChromeClientImpl;
 import com.wuchao.latte.delegates.web.client.WebViewClientImpl;
 import com.wuchao.latte.delegates.web.route.RouteKeys;
@@ -18,12 +19,14 @@ import com.wuchao.latte.delegates.web.route.Router;
  * @desciption:
  */
 
-public class WebViewDelegateImpl extends WebDelegate {
+public class WebDelegateImpl extends WebDelegate {
 
-    public static WebViewDelegateImpl create(String url) {
+    private IPageLoadListener mIPageLoadListener = null;
+
+    public static WebDelegateImpl create(String url) {
         Bundle bundle = new Bundle();
         bundle.putString(RouteKeys.URL.name(), url);
-        final WebViewDelegateImpl delegate = new WebViewDelegateImpl();
+        final WebDelegateImpl delegate = new WebDelegateImpl();
         delegate.setArguments(bundle);
         return delegate;
     }
@@ -31,6 +34,10 @@ public class WebViewDelegateImpl extends WebDelegate {
     @Override
     public Object setLayout() {
         return getWebView();
+    }
+
+    public void setPageLoadListener(IPageLoadListener listener) {
+        mIPageLoadListener = listener;
     }
 
     @Override
@@ -54,6 +61,7 @@ public class WebViewDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mIPageLoadListener);
         return client;
     }
 

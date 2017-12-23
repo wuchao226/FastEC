@@ -9,7 +9,7 @@ import android.webkit.WebView;
 
 import com.wuchao.latte.delegates.LatteDelegate;
 import com.wuchao.latte.delegates.web.WebDelegate;
-import com.wuchao.latte.delegates.web.WebViewDelegateImpl;
+import com.wuchao.latte.delegates.web.WebDelegateImpl;
 
 /**
  * @author: wuchao
@@ -36,8 +36,8 @@ public class Router {
             callPhone(delegate.getContext(), url);
             return true;
         }
-        final LatteDelegate topDelegate = (LatteDelegate) delegate.getTopFragment();
-        final WebViewDelegateImpl webDelegate = WebViewDelegateImpl.create(url);
+        final LatteDelegate topDelegate = delegate.getTopDelegate();
+        final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
         if (topDelegate != null) {
             topDelegate.getSupportDelegate().start(webDelegate);
         } else {
