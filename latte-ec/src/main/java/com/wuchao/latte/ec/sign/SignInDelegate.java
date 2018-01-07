@@ -7,11 +7,13 @@ import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
 
+import com.wuchao.ec.R;
+import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.ec.R;
-import com.wuchao.latte.ec.R2;
 import com.wuchao.latte.net.rx.RxRestClient;
 import com.wuchao.latte.util.log.LatteLogger;
+import com.wuchao.latte.wechat.LatteWeChat;
+import com.wuchao.latte.wechat.callbacks.IWeChatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,31 +63,31 @@ public class SignInDelegate extends LatteDelegate {
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .build()
-            .post()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<String>() {
-                @Override
-                public void onSubscribe(Disposable d) {
+                    .post()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<String>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                }
+                        }
 
-                @Override
-                public void onNext(String response) {
-                    LatteLogger.json("USER_PROFILE", response);
-                    SignHandler.onSignIn(response, mISignListener);
-                }
+                        @Override
+                        public void onNext(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignIn(response, mISignListener);
+                        }
 
-                @Override
-                public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
 
-                }
+                        }
 
-                @Override
-                public void onComplete() {
+                        @Override
+                        public void onComplete() {
 
-                }
-            });
+                        }
+                    });
         }
     }
 
@@ -96,7 +98,12 @@ public class SignInDelegate extends LatteDelegate {
 
     @OnClick({R2.id.icon_sign_in_wechat})
     public void onClickWeiChat() {
+        LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
 
+            }
+        }).signIn();
     }
 
     private boolean checkForm() {

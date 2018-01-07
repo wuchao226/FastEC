@@ -11,9 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.joanzapata.iconify.widget.IconTextView;
+import com.wuchao.ec.R;
+import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.bottom.BottomItemDelegate;
-import com.wuchao.latte.ec.R;
-import com.wuchao.latte.ec.R2;
 import com.wuchao.latte.ec.main.EcBottomDelegate;
 import com.wuchao.latte.ui.recycler.BaseDecoration;
 import com.wuchao.latte.ui.refresh.RefreshHandler;

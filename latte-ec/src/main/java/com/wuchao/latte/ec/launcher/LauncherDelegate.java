@@ -6,11 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.wuchao.ec.R;
+import com.wuchao.ec.R2;
 import com.wuchao.latte.app.AccountManager;
 import com.wuchao.latte.app.IUserChecker;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.ec.R;
-import com.wuchao.latte.ec.R2;
 import com.wuchao.latte.ui.launcher.ScrollLauncherTag;
 import com.wuchao.latte.util.storage.LattePreference;
 import com.wuchao.latte.util.timer.BaseTimerTask;
@@ -100,7 +100,9 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
             @Override
             public void run() {
                 if (mTvLauncherTimer != null) {
-                    mTvLauncherTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
+                    if (mCount >= 0) {
+                        mTvLauncherTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
+                    }
                     mCount--;
                     if (mCount < 0) {
                         if (mTimer != null) {
@@ -112,5 +114,20 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initTimer();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
     }
 }

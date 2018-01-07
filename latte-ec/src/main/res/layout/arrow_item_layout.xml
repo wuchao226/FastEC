@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="5dp"
+    android:background="@android:color/white">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_arrow_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_arrow_value"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/icon_arrow"
+        android:gravity="center"
+        android:text="未设置"/>
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="{fa-chevron-right}"/>
+
+</RelativeLayout>

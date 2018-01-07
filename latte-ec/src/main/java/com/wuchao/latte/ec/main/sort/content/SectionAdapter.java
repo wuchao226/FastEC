@@ -7,7 +7,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.wuchao.latte.ec.R;
+import com.wuchao.ec.R;
 
 import java.util.List;
 

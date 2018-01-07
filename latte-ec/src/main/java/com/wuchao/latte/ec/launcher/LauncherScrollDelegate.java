@@ -7,10 +7,10 @@ import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.wuchao.ec.R;
 import com.wuchao.latte.app.AccountManager;
 import com.wuchao.latte.app.IUserChecker;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.ec.R;
 import com.wuchao.latte.ui.launcher.LauncherHolderCreator;
 import com.wuchao.latte.ui.launcher.ScrollLauncherTag;
 import com.wuchao.latte.util.storage.LattePreference;

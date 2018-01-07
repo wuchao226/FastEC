@@ -26,7 +26,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':latte-core')
+    implementation files('libs/alipaySdk-20170922.jar')
     //butterknife依赖
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    //圆形图片
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

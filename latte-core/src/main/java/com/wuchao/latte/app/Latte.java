@@ -1,5 +1,6 @@
 package com.wuchao.latte.app;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
@@ -19,6 +20,7 @@ public final class Latte {
     public static Configurator init(Context context) {
         getConfigurator().getLatteConfigs()
                 .put(ConfigKeys.APPLICATION_CONTEXT, context.getApplicationContext());
+        getConfigurator().getLatteConfigs().put(ConfigKeys.APPLICATION, context);
         return Configurator.getInstance();
     }
 
@@ -26,15 +28,19 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
-    public static <T> T getConfigurations(Object key) {
+    public static <T> T getConfiguration(Object key) {
         return getConfigurator().getConfiguration(key);
     }
 
     public static Context getApplicationContext() {
-        return getConfigurations(ConfigKeys.APPLICATION_CONTEXT);
+        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 
-    public static Handler getHandler(){
-        return getConfigurations(ConfigKeys.HANDLER);
+    public static Application getApplication() {
+        return getConfiguration(ConfigKeys.APPLICATION);
+    }
+
+    public static Handler getHandler() {
+        return getConfiguration(ConfigKeys.HANDLER);
     }
 }

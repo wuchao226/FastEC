@@ -5,8 +5,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.wuchao.ec.R;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.ec.R;
 import com.wuchao.latte.ec.main.sort.SortDelegate;
 import com.wuchao.latte.ec.main.sort.content.ContentDelegate;
 import com.wuchao.latte.ui.recycler.ItemType;

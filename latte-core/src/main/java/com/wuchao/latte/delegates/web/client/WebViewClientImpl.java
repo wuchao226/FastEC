@@ -54,7 +54,7 @@ public class WebViewClientImpl extends WebViewClient {
         /*
             注意，这里的Cookie和API请求的Cookie是不一样的，这个在网页不可见
          */
-        final String webHost = Latte.getConfigurations(ConfigKeys.WEB_HOST);
+        final String webHost = Latte.getConfiguration(ConfigKeys.WEB_HOST);
         if (webHost != null) {
             if (manager.hasCookies()) {
                 final String cookieStr = manager.getCookie(webHost);

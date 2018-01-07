@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.wuchao.ec.R;
+import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.ec.R;
-import com.wuchao.latte.ec.R2;
 import com.wuchao.latte.ec.main.sort.SortDelegate;
 import com.wuchao.latte.net.rx.RxRestClient;
 import com.wuchao.latte.ui.loader.LatteLoader;

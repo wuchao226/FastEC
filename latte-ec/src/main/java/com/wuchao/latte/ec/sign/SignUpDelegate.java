@@ -7,9 +7,9 @@ import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
 
+import com.wuchao.ec.R;
+import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.ec.R;
-import com.wuchao.latte.ec.R2;
 import com.wuchao.latte.net.rx.RxRestClient;
 import com.wuchao.latte.util.log.LatteLogger;
 

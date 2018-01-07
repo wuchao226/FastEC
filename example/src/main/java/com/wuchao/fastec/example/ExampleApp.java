@@ -38,6 +38,8 @@ public class ExampleApp extends Application {
                 //添加Cookie拦截器
                 .withWebHost("http://www.baidu.com/")
                 .withInterceptor(new AddCookieInterceptor())
+                .withWeChatAppId("")
+                .withWeChatAppSecret("")
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);

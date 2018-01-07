@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.wuchao.ec.R;
 import com.wuchao.latte.delegates.bottom.BottomItemDelegate;
-import com.wuchao.latte.ec.R;
 import com.wuchao.latte.ec.main.sort.content.ContentDelegate;
 import com.wuchao.latte.ec.main.sort.list.VerticalListDelegate;
 

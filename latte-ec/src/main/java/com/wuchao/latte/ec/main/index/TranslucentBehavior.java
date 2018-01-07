@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.wuchao.latte.ec.R;
+import com.wuchao.ec.R;
 import com.wuchao.latte.ui.recycler.RgbValue;
 
 /**
