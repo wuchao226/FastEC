@@ -112,8 +112,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-        //FastPay.create(this).beginPayDialog();
-        createOrder();
+        FastPay.create(this).beginPayDialog();
+        //createOrder();
     }
 
     //创建订单，注意，和支付是没有关系的

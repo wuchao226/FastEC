@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="delegate_container" type="id"/>
+    <!-- 第几个星星 -->
+    <item name="star_count" type="id"/>
+    <!-- 星星是否被选择 -->
+    <item name="star_is_select" type="id"/>
 </resources>

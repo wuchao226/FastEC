@@ -9,11 +9,13 @@ import android.view.View;
 import com.wuchao.ec.R;
 import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.bottom.BottomItemDelegate;
+import com.wuchao.latte.ec.main.personal.address.AddressDelegate;
 import com.wuchao.latte.ec.main.personal.list.ListAdapter;
 import com.wuchao.latte.ec.main.personal.list.ListBean;
 import com.wuchao.latte.ec.main.personal.list.ListItemType;
 import com.wuchao.latte.ec.main.personal.order.OrderListDelegate;
 import com.wuchao.latte.ec.main.personal.profile.UserProfileDelegate;
+import com.wuchao.latte.ec.main.personal.settings.SettingsDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,14 +70,14 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
-                //.setDelegate(new AddressDelegate())
+                .setDelegate(new AddressDelegate())
                 .setText("收货地址")
                 .build();
 
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
-                //.setDelegate(new SettingsDelegate())
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
 
@@ -88,5 +90,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }

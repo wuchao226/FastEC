@@ -5,11 +5,17 @@ buildscript {
         jcenter()
         mavenCentral()
         google()
+        // 添加MobSDK的maven地址
+        maven {
+            url "http://mvn.mob.com/android"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        // 注册MobSDK
+        classpath "com.mob.sdk:MobSDK:+"
     }
 }
 

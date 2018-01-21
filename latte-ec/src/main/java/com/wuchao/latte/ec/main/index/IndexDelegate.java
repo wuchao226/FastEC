@@ -1,6 +1,7 @@
 package com.wuchao.latte.ec.main.index;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,15 +11,21 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.wuchao.ec.R;
 import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.bottom.BottomItemDelegate;
 import com.wuchao.latte.ec.main.EcBottomDelegate;
+import com.wuchao.latte.ec.main.index.search.SearchDelegate;
 import com.wuchao.latte.ui.recycler.BaseDecoration;
 import com.wuchao.latte.ui.refresh.RefreshHandler;
+import com.wuchao.latte.util.callback.CallbackManager;
+import com.wuchao.latte.util.callback.CallbackType;
+import com.wuchao.latte.util.callback.IGlobalCallback;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author: wuchao
@@ -26,7 +33,7 @@ import butterknife.BindView;
  * @desciption:
  */
 
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView;
@@ -42,6 +49,25 @@ public class IndexDelegate extends BottomItemDelegate {
     Toolbar mToolbar;
 
     private RefreshHandler mRefreshHandler = null;
+
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
+    }
+
+
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConvert());
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@NonNull String args) {
+                        ToastUtils.showLong("得到的二维码是：" + args);
+                    }
+                });
+        mSearchView.setOnFocusChangeListener(this);
+    }
 
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(
@@ -61,11 +87,6 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConvert());
-    }
-
-    @Override
     public Object setLayout() {
         return R.layout.delegate_index;
     }
@@ -78,4 +99,10 @@ public class IndexDelegate extends BottomItemDelegate {
         mRefreshHandler.firstPage("index.php");
     }
 
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if(hasFocus){
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
+    }
 }

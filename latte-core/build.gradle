@@ -97,4 +97,12 @@ dependencies {
     }
     //工具包
     compile 'com.blankj:utilcode:1.10.0'
+    //二维码
+    compile 'me.dm7.barcodescanner:zbar:1.9.8'
+    //ViewPager动画
+    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    //View动画依赖
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:2.0@aar'
+    compile 'com.daimajia.androidanimations:library:2.3@aar'
 }
