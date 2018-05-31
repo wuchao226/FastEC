@@ -3,7 +3,6 @@ package com.wuchao.latte.net.rx;
 import android.content.Context;
 
 import com.wuchao.latte.net.HttpMethod;
-import com.wuchao.latte.net.RxRestCreator;
 import com.wuchao.latte.ui.loader.LatteLoader;
 import com.wuchao.latte.ui.loader.LoaderStyle;
 

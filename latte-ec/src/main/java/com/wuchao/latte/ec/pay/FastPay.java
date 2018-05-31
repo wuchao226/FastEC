@@ -1,5 +1,6 @@
 package com.wuchao.latte.ec.pay;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -42,7 +43,7 @@ public class FastPay implements View.OnClickListener {
     private AlertDialog mDialog = null;
     private int mOrderID = -1;
 
-    public FastPay(LatteDelegate delegate) {
+    private FastPay(LatteDelegate delegate) {
         mActivity = delegate.getProxyActivity();
         mDialog = new AlertDialog.Builder(delegate.getContext()).create();
     }
@@ -82,6 +83,7 @@ public class FastPay implements View.OnClickListener {
         return this;
     }
 
+    @SuppressLint("CheckResult")
     private void weChatPay(int orderId) {
         LatteLoader.stopLoading();
         final String weChatPrePayUrl = "你的服务端微信预支付地址" + orderId;
@@ -122,6 +124,7 @@ public class FastPay implements View.OnClickListener {
                 });
     }
 
+    @SuppressLint("CheckResult")
     private void alPay(int orderId) {
         final String singUrl = "你的服务端支付地址" + orderId;
         //获取签名字符串
@@ -147,10 +150,10 @@ public class FastPay implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_dialog_pay_alpay) {
-            alPay(mOrderID);
+            //alPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_wechat) {
-            weChatPay(mOrderID);
+            //weChatPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
             mDialog.cancel();

@@ -10,7 +10,8 @@ import com.wuchao.fastec.example.event.shareEvent;
 import com.wuchao.latte.app.Latte;
 import com.wuchao.latte.ec.database.DatabaseManager;
 import com.wuchao.latte.ec.icon.FontEcModule;
-import com.wuchao.latte.net.rx.AddCookieInterceptor;
+import com.wuchao.latte.net.interceptors.InterceptorUtil;
+import com.wuchao.latte.net.interceptors.AddCookieInterceptor;
 import com.wuchao.latte.util.callback.CallbackManager;
 import com.wuchao.latte.util.callback.CallbackType;
 import com.wuchao.latte.util.callback.IGlobalCallback;
@@ -28,17 +29,21 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class ExampleApp extends Application {
 
     //http://114.67.235.114/RestServer/api/user_profile.php
+    //http://952cloud.top/RestServer/api/
     //192.168.1.102
     //192.168.1.128
     @Override
     public void onCreate() {
         super.onCreate();
+        //String baseUrl = "http://952cloud.top/RestServer/api/";
+        //String baseUrl="http://oxjde2kpq.bkt.clouddn.com/";
+        String baseUrl="http://192.168.4.68:8080/RestServer/api/";
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://192.168.1.102:8080/RestServer/api/")
+                .withApiHost(baseUrl)
                 //.withInterceptor(new DebugInterceptor("index", R.raw.test))
-                .withInterceptor(mLoggingInterceptor)
+                .withInterceptor(InterceptorUtil.LoggingInterceptor())
                 .withJavaScriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
                 .withWebEvent("share", new shareEvent())
@@ -58,7 +63,7 @@ public class ExampleApp extends Application {
                 .addCallback(CallbackType.TAG_OPEN_PUSH, new IGlobalCallback() {
                     @Override
                     public void executeCallback(@NonNull Object args) {
-                        if(JPushInterface.isPushStopped(Latte.getApplicationContext())){
+                        if (JPushInterface.isPushStopped(Latte.getApplicationContext())) {
                             //开启极光推送
                             JPushInterface.setDebugMode(true);
                             JPushInterface.init(Latte.getApplicationContext());

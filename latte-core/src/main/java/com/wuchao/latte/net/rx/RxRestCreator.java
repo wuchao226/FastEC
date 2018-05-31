@@ -1,8 +1,7 @@
-package com.wuchao.latte.net;
+package com.wuchao.latte.net.rx;
 
 import com.wuchao.latte.app.ConfigKeys;
 import com.wuchao.latte.app.Latte;
-import com.wuchao.latte.net.rx.RxRestService;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;

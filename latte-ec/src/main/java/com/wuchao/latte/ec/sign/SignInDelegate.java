@@ -10,17 +10,11 @@ import android.view.View;
 import com.wuchao.ec.R;
 import com.wuchao.ec.R2;
 import com.wuchao.latte.delegates.LatteDelegate;
-import com.wuchao.latte.net.rx.RxRestClient;
-import com.wuchao.latte.util.log.LatteLogger;
 import com.wuchao.latte.wechat.LatteWeChat;
 import com.wuchao.latte.wechat.callbacks.IWeChatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author: wuchao
@@ -57,7 +51,8 @@ public class SignInDelegate extends LatteDelegate {
 
     @OnClick({R2.id.btn_sign_in})
     public void onClickSignIn() {
-        if (checkForm()) {
+        SignHandler.onSignIn("", mISignListener);
+        /*if (checkForm()) {
             RxRestClient.builder()
                     .url("user_profile.php")
                     .params("email", mEmail.getText().toString())
@@ -88,7 +83,7 @@ public class SignInDelegate extends LatteDelegate {
 
                         }
                     });
-        }
+        }*/
     }
 
     @OnClick({R2.id.tv_link_sign_up})

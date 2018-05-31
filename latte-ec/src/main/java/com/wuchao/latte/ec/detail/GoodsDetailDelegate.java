@@ -57,6 +57,12 @@ public class GoodsDetailDelegate extends LatteDelegate implements
         AppBarLayout.OnOffsetChangedListener,
         BezierUtil.AnimationListener {
 
+    private static final String ARG_GOODS_ID = "ARG_GOODS_ID";
+    private static final RequestOptions OPTIONS = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .dontAnimate()
+            .override(100, 100);
     @BindView(R2.id.goods_detail_toolbar)
     Toolbar mToolbar = null;
     @BindView(R2.id.tab_layout)
@@ -69,7 +75,6 @@ public class GoodsDetailDelegate extends LatteDelegate implements
     CollapsingToolbarLayout mCollapsingToolbarLayout = null;
     @BindView(R2.id.app_bar_detail)
     AppBarLayout mAppBar = null;
-
     //底部
     @BindView(R2.id.icon_favor)
     IconTextView mIconFavor = null;
@@ -79,17 +84,9 @@ public class GoodsDetailDelegate extends LatteDelegate implements
     RelativeLayout mRlAddShopCart = null;
     @BindView(R2.id.icon_shop_cart)
     IconTextView mIconShopCart = null;
-
-    private static final String ARG_GOODS_ID = "ARG_GOODS_ID";
     private int mGoodsId = -1;
     private String mGoodsThumbUrl = null;
     private int mShopCount = 0;
-
-    private static final RequestOptions OPTIONS = new RequestOptions()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .centerCrop()
-            .dontAnimate()
-            .override(100, 100);
 
     public static GoodsDetailDelegate create(int goodId) {
         final Bundle bundle = new Bundle();
@@ -107,6 +104,11 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                 .apply(OPTIONS)
                 .into(animImg);
         BezierAnimation.addCart(this, mRlAddShopCart, mIconShopCart, animImg, this);
+    }
+
+    @OnClick(R2.id.icon_goods_back)
+    void onClickBack() {
+        getSupportDelegate().pop();
     }
 
     @Override
@@ -156,22 +158,13 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                 });
     }
 
-    private void setShopCartCount(JSONObject data) {
-        mGoodsThumbUrl = data.getString("thumb");
-        if (mShopCount == 0) {
-            mCircleTextView.setVisibility(View.GONE);
-        }
-    }
-
-    private void initGoodsInfo(JSONObject data) {
-        final String goodsData = data.toJSONString();
-        getSupportDelegate().
-                loadRootFragment(R.id.frame_goods_info, GoodsInfoDelegate.create(goodsData));
-    }
-
-    private void initPager(JSONObject data) {
-        final PagerAdapter adapter = new TabPagerAdapter(getFragmentManager(), data);
-        mViewPager.setAdapter(adapter);
+    private void initTabLayout() {
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.setSelectedTabIndicatorColor
+                (ContextCompat.getColor(getContext(), R.color.app_main));
+        mTabLayout.setTabTextColors(ColorStateList.valueOf(Color.BLACK));
+        mTabLayout.setBackgroundColor(Color.WHITE);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     private void initBanner(JSONObject data) {
@@ -189,13 +182,22 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                 .setCanLoop(true);
     }
 
-    private void initTabLayout() {
-        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mTabLayout.setSelectedTabIndicatorColor
-                (ContextCompat.getColor(getContext(), R.color.app_main));
-        mTabLayout.setTabTextColors(ColorStateList.valueOf(Color.BLACK));
-        mTabLayout.setBackgroundColor(Color.WHITE);
-        mTabLayout.setupWithViewPager(mViewPager);
+    private void initGoodsInfo(JSONObject data) {
+        final String goodsData = data.toJSONString();
+        getSupportDelegate().
+                loadRootFragment(R.id.frame_goods_info, GoodsInfoDelegate.create(goodsData));
+    }
+
+    private void initPager(JSONObject data) {
+        final PagerAdapter adapter = new TabPagerAdapter(getFragmentManager(), data);
+        mViewPager.setAdapter(adapter);
+    }
+
+    private void setShopCartCount(JSONObject data) {
+        mGoodsThumbUrl = data.getString("thumb");
+        if (mShopCount == 0) {
+            mCircleTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -226,12 +228,14 @@ public class GoodsDetailDelegate extends LatteDelegate implements
                     @Override
                     public void accept(String response) throws Exception {
                         LatteLogger.json("ADD", response);
-                        final boolean isAdded = JSON.parseObject(response).getBoolean("data");
-                        if (isAdded) {
-                            mShopCount++;
-                            mCircleTextView.setVisibility(View.VISIBLE);
-                            mCircleTextView.setText(String.valueOf(mShopCount));
-                        }
+//                        if (!TextUtils.isEmpty(response)) {
+//                            final boolean isAdded = JSON.parseObject(response).getBoolean("data");
+//                            if (isAdded) {
+                        mShopCount++;
+                        mCircleTextView.setVisibility(View.VISIBLE);
+                        mCircleTextView.setText(String.valueOf(mShopCount));
+//                            }
+//                        }
                     }
                 });
     }

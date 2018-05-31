@@ -11,6 +11,8 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
+import static javax.lang.model.element.Modifier.PUBLIC;
+
 /**
  * @author: wuchao
  * @date: 2017/12/27 22:55
@@ -41,7 +43,7 @@ public class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
                 TypeSpec.classBuilder("AppRegister")
-                        .addModifiers(Modifier.PUBLIC)
+                        .addModifiers(PUBLIC)
                         .addModifiers(Modifier.FINAL)
                         .superclass(TypeName.get(typeMirror))
                         .build();

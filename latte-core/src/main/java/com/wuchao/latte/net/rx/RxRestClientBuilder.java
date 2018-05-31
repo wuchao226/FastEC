@@ -2,7 +2,6 @@ package com.wuchao.latte.net.rx;
 
 import android.content.Context;
 
-import com.wuchao.latte.net.RxRestCreator;
 import com.wuchao.latte.ui.loader.LoaderStyle;
 
 import java.io.File;

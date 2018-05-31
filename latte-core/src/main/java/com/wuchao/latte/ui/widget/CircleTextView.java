@@ -29,7 +29,7 @@ public class CircleTextView extends AppCompatTextView {
     }
 
     public CircleTextView(Context context, AttributeSet attrs) {
-        super(context, attrs,0);
+        super(context, attrs, 0);
         mPaint = new Paint();
         mFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
         mPaint.setColor(Color.RED);
@@ -58,7 +58,7 @@ public class CircleTextView extends AppCompatTextView {
     public void draw(Canvas canvas) {
         canvas.setDrawFilter(mFilter);
         canvas.drawCircle(getWidth() / 2, getHeight() / 2,
-                Math.max(getWidth(), getHeight() / 2), mPaint);
+                Math.max(getWidth() / 2, getHeight() / 2), mPaint);
         super.draw(canvas);
     }
 }

@@ -1,6 +1,6 @@
 package com.wuchao.latte.net.download;
 
-import com.wuchao.latte.net.RxRestCreator;
+import com.wuchao.latte.net.rx.RxRestCreator;
 import com.wuchao.latte.net.callback.IError;
 import com.wuchao.latte.net.callback.IFailure;
 import com.wuchao.latte.net.callback.IRequest;

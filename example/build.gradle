@@ -2,12 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: "com.mob.sdk"
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.wuchao.fastec.example"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,16 +29,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':latte-ec')
-    provided project(':latte-annotations')
-    compile 'com.facebook.stetho:stetho:1.5.0'
-    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    compileOnly project(':latte-annotations')
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
     implementation project(':latte-compiler')
     annotationProcessor project(':latte-compiler')
-    compile 'cn.jiguang.sdk:jpush:3.0.9'
-    compile 'cn.jiguang.sdk:jcore:1.1.7'
+    implementation 'cn.jiguang.sdk:jpush:3.0.9'
+    implementation 'cn.jiguang.sdk:jcore:1.1.7'
 }

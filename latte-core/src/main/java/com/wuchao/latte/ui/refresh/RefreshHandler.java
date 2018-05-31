@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wuchao.latte.app.Latte;
 import com.wuchao.latte.net.rx.RxRestClient;
+import com.wuchao.latte.net.rx.Transformer;
 import com.wuchao.latte.ui.recycler.DataConverter;
 import com.wuchao.latte.ui.recycler.MultipleRecyclerAdapter;
 
@@ -67,8 +68,9 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                 .url(url)
                 .build()
                 .get()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(Transformer.<String>switchSchedulers())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {

@@ -1,4 +1,4 @@
-package com.wuchao.latte.net.rx;
+package com.wuchao.latte.net.interceptors;
 
 import com.wuchao.latte.util.log.LatteLogger;
 import com.wuchao.latte.util.storage.LattePreference;

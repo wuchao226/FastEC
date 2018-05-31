@@ -9,6 +9,7 @@ import com.wuchao.latte.activitys.ProxyActivity;
 import com.wuchao.latte.app.Latte;
 import com.wuchao.latte.delegates.LatteDelegate;
 import com.wuchao.latte.ec.launcher.ILauncherListener;
+import com.wuchao.latte.ec.launcher.LauncherDelegate;
 import com.wuchao.latte.ec.launcher.OnLauncherFinishTag;
 import com.wuchao.latte.ec.main.EcBottomDelegate;
 import com.wuchao.latte.ec.sign.ISignListener;
@@ -45,7 +46,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new EcBottomDelegate();
+        return new LauncherDelegate();
     }
 
     @Override
